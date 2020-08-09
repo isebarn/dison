@@ -38,6 +38,7 @@ class ListSpider(scrapy.Spider):
 
     department = response.xpath("//div[@id='departments']/ul/li[2]/span/a/span/text()").get()
     category = response.xpath("//div[@id='departments']/ul/li[3]/span/a/span/text()").get()
+
     subcategory = response.xpath("//div[@id='departments']/ul/li[4]/span/a/span/text()").get()
     if subcategory == None:
       subcategory = response.xpath("//div[@id='departments']/ul/li[4]/span/span/text()").get()
@@ -46,21 +47,18 @@ class ListSpider(scrapy.Spider):
     if subsubcategory == None:
       subsubcategory = response.xpath("//div[@id='departments']/ul/li[5]/span/span/text()").get()
 
-    subsubsubcategory = response.xpath("//div[@id='departments']/ul/li[6]/span/a/span/text()").get()
-
+    subsubsubcategory = response.xpath("//div[@id='departments']/ul/li[6]/span/span/text()").get()
     subsubsubcategory = subsubsubcategory if subsubsubcategory != None else ''
-
 
     marketplace = Operations.GetOrCreateMarketplace(marketplace)
     department = Operations.GetOrCreateDepartment(department)
-    category = Operations.GetOrCreateCategory(subcategory)
+    category = Operations.GetOrCreateCategory(category)
     subcategory = Operations.GetOrCreateCategory(subcategory)
     subsubcategory = Operations.GetOrCreateCategory(subsubcategory)
     subsubsubcategory = Operations.GetOrCreateCategory(subsubsubcategory)
 
     images = response.xpath("//div[@data-asin]/..//a/div/img")
     start_urls = [x.xpath("../../@href").extract_first() for x in images]
-
     for url in start_urls[0:self.pages]:
 
       yield response.follow(url=url,
