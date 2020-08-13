@@ -80,7 +80,15 @@ class ListSpider(scrapy.Spider):
       ).extract_first(
       ).replace('\n', '')
     URL = response.request.url
+
     author = response.xpath("//a[@data-asin]/text()").extract_first()
+    if author == None:
+      try:
+        author = response.xpath("//span[@class='author notFaded']/a/text()").extract_first()
+
+      except Exception as e:
+        author = ''
+
     asin = response.xpath("//b[contains(text(), 'ASIN:')]"
       ).xpath("../text()").extract_first().strip()
     language = response.xpath("//b[contains(text(), 'Language:')]"

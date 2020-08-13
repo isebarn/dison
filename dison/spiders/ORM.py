@@ -187,4 +187,4 @@ class Operations:
 
 if __name__ == "__main__":
   print(os.environ.get('DATABASE'))
-  print(Operations.GetOrCreateMarketplace('Energy Healing').__dict__)
+  print(Operations.GetSites()[0].Value)
