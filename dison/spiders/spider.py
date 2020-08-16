@@ -8,24 +8,40 @@ import os
 
 try:
   from dison.spiders.ORM import Operations, Book
+  from dison.spiders.Email import Email
 
 except Exception as e:
   from ORM import Operations, Book
+  from Email import Email
 
+def parse_isbn(paperback_url):
+  paperback_isbn_string = re.search(r'dp/(\d+)/ref', paperback_url)
+
+  if paperback_isbn_string != None:
+    return paperback_isbn_string.group(1)
+
+  paperback_isbn_string = re.search(r'dp/(\d+)X/ref', paperback_url)
+
+  if paperback_isbn_string != None:
+    return paperback_isbn_string.group(1)
+
+  paperback_isbn_string = re.search(r'dp/(.*?)/ref', paperback_url)
+  if paperback_isbn_string != None:
+    return paperback_isbn_string.group(1)
 
 class ListSpider(scrapy.Spider):
   name = "root"
-  counter = 0
   books = []
   sql_insert_time = 0
   sql_query_kindle_and_language = 0
-
+  counter = 0
 
   def start_requests(self):
-    self.pages = int(getattr(self, 'pages', 5))
+    self.pages = int(getattr(self, 'pages', 1000))
+    self.urls = int(getattr(self, 'urls', -1))
     start_urls = Operations.GetSites()
 
-    for url in start_urls:
+    for url in start_urls[0:self.urls]:
       yield scrapy.Request(url=url.Value,
         callback=self.parseList, errback=self.errorParseList,
         meta={'searchURLID': url.Id})
@@ -59,26 +75,37 @@ class ListSpider(scrapy.Spider):
 
     images = response.xpath("//div[@data-asin]/..//a/div/img")
     start_urls = [x.xpath("../../@href").extract_first() for x in images]
-    for url in start_urls[0:self.pages]:
+
+    for url in start_urls:
 
       yield response.follow(url=url,
         callback=self.parseBook, errback=self.errorParseBook,
         meta={'searchURLID': response.meta.get('searchURLID'),
-        'marketplace': marketplace.Id, 'department': department.Id,
-        'category': category.Id, 'subcategory': subcategory.Id,
+        'marketplace': marketplace.Id,
+        'marketplace_name': marketplace.Value,
+        'department': department.Id,
+        'category': category.Id,
+        'subcategory': subcategory.Id,
         'subsubcategory': subsubcategory.Id,
         'subsubsubcategory': subsubsubcategory.Id })
 
-    if self.counter < 10:
-      next_page = response.xpath("//ul/li/a[contains(text(), 'Next')]/@href").extract_first()
+    next_page = response.xpath("//ul/li/a[contains(text(), 'Next')]/@href").extract_first(None)
+
+    if next_page != None and self.counter < self.pages:
       yield response.follow(next_page,
         callback=self.parseList, errback=self.errorParseList,
         meta={'searchURLID': response.meta.get('searchURLID')})
 
   def parseBook(self, response):
-    title = response.xpath("//span[@id='productTitle']/text()"
-      ).extract_first(
-      ).replace('\n', '')
+    print(123)
+    try:
+      title = response.xpath("//span[@id='productTitle']/text()").extract_first().replace('\n', '')
+
+    except Exception as e:
+      self.log(response.url)
+      title = ''
+
+    self.log("hello")
     URL = response.request.url
 
     author = response.xpath("//a[@data-asin]/text()").extract_first()
@@ -99,8 +126,7 @@ class ListSpider(scrapy.Spider):
 
     paperback_url = response.xpath("//a/span[contains(text(), 'Paperback')]").xpath("../@href").extract_first()
     try:
-      paperback_isbn_string = re.search(r'dp/(\d+)/ref', paperback_url).group(1)
-      paperback_isbn = re.search(r'\d+', paperback_isbn_string).group()
+      paperback_isbn = parse_isbn(paperback_url)
     except Exception as e:
       paperback_isbn = ''
 
@@ -117,18 +143,18 @@ class ListSpider(scrapy.Spider):
     # Inherited book features
     start = time()
     if len(kindle_category_names) > 0:
-      book.eBookCategory_1 = Operations.GetOrCreateEBookCategory(kindle_category_names[0]).Id
+      book.eBookCategory_1 = Operations.GetOrCreateEBookCategory(kindle_category_names[0], kindle_category_urls[0]).Id
     else:
       book.eBookCategory_1 = None
 
     if len(kindle_category_names) > 1:
-      book.eBookCategory_2 = Operations.GetOrCreateEBookCategory(kindle_category_names[1]).Id
+      book.eBookCategory_2 = Operations.GetOrCreateEBookCategory(kindle_category_names[1], kindle_category_urls[1]).Id
 
     else:
       book.eBookCategory_2 = None
 
     if len(kindle_category_names) > 2:
-      book.eBookCategory_3 = Operations.GetOrCreateEBookCategory(kindle_category_names[2]).Id
+      book.eBookCategory_3 = Operations.GetOrCreateEBookCategory(kindle_category_names[2], kindle_category_urls[2]).Id
 
     else:
       book.eBookCategory_3 = None
@@ -163,8 +189,17 @@ class ListSpider(scrapy.Spider):
     return spider
 
   def spider_closed(self, spider):
-    print("SQL Insert book time: {}".format(self.sql_insert_time))
-    print("SQL Kindle and Language query: {}".format(self.sql_query_kindle_and_language))
+      print("SQL Insert book time: {}".format(self.sql_insert_time))
+      print("SQL Kindle and Language query: {}".format(self.sql_query_kindle_and_language))
+      Operations.generate_data_for_email()
+      email = Email({'email': 'isebarn.data@gmail.com', 'password': 'tommy182'})
+      email.run()
 
 if __name__ == "__main__":
-  pass
+  urls = ['/Open-Road-Journey-Fourteenth-Departures/dp/0307387550/ref=tmm_pap_title_0?_encoding=UTF8&qid=1597352129&sr=1-77',
+  'www.amazon.com/Crooked-Cucumber-Teaching-Shunryu-Suzuki/dp/0767901053/ref=tmm_pap_title_0?_encoding=UTF8&qid=1597051787&sr=1-16',
+  '/Pope-John-XXIII-Penguin-2008-01-29/dp/B01K3NJGG2/ref=tmm_pap_title_0?_encoding=UTF8&qid=1597352129&sr=1-74',
+  '/Sundar-Singh-Footprints-Mountains-Christian/dp/157658318X/ref=tmm_pap_title_0?_encoding=UTF8&qid=1597352132&sr=1-91']
+
+  for url in urls:
+    print(parse_isbn(url))

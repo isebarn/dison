@@ -6,6 +6,7 @@ from datetime import datetime
 from sqlalchemy import ForeignKey, desc, create_engine, func, Column, BigInteger, Integer, Float, String, Boolean, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import psycopg2
 
 if os.environ.get('DATABASE') is not None:
   connectionString = os.environ.get('DATABASE')
@@ -14,11 +15,20 @@ engine = create_engine(connectionString, echo=False)
 
 Base = declarative_base()
 
+def read_file(filename):
+  file = open(filename, "r")
+  return file.readlines()
+
 class SearchURL(Base):
-  __tablename__ = 'searchURL'
+  __tablename__ = 'search_url'
 
   Id = Column('id', Integer, primary_key=True)
   Value = Column('value', String)
+  Advert = Column('advert', String)
+
+  def __init__(self, value, advert):
+    self.Value = value
+    self.Advert = advert
 
 class Marketplace(Base):
   __tablename__ = 'marketplace'
@@ -43,6 +53,7 @@ class eBookCategory(Base):
 
   Id = Column('id', Integer, primary_key=True)
   Value = Column('value', String)
+  URL = Column('url', String)
 
 class Language(Base):
   __tablename__ = 'language'
@@ -58,8 +69,8 @@ class Book(Base):
   Title = Column('title', String)
   URL = Column('url', String)
   Author = Column('author', String)
-  PaperbackURL = Column('paperbackURL', String)
-  PaperbackISBN = Column('paperbackISBN', String)
+  PaperbackURL = Column('paperback_url', String)
+  PaperbackISBN = Column('paperback_isbn', String)
 
   # Foreign keys
 
@@ -70,7 +81,7 @@ class Book(Base):
   LanguageID = Column('language', Integer, ForeignKey('language.id'))
 
   # This is manually put into db
-  SearchURLID = Column('searchURL', Integer, ForeignKey('searchURL.id'))
+  SearchURLID = Column('search_url', Integer, ForeignKey('search_url.id'))
 
   # This is on list page
   MarketplaceID = Column('marketplace', Integer, ForeignKey('marketplace.id'), primary_key=True)
@@ -137,7 +148,7 @@ class Operations:
 
     return category
 
-  def GetOrCreateEBookCategory(category_name):
+  def GetOrCreateEBookCategory(category_name, category_url):
 
     category = session.query(eBookCategory
       ).filter_by(Value=category_name).scalar()
@@ -147,6 +158,7 @@ class Operations:
     else:
       category = eBookCategory()
       category.Value = category_name
+      category.URL = category_url
       session.add(category)
       session.commit()
 
@@ -184,7 +196,26 @@ class Operations:
     session.add(book)
     session.commit()
 
+  def SaveSearchURL(data):
+    if session.query(SearchURL.Id).filter_by(Id=data.Id).scalar() == None:
+      session.add(SearchURL(data))
+      session.commit()
+
+  def init_database():
+    searches = [x.rstrip() for x in read_file('searches.txt')]
+    adverts = [x.rstrip() for x in read_file('adverts.txt')]
+
+    search_urls = [SearchURL(search, advert) for search, advert in zip(searches, adverts)]
+    session.bulk_save_objects(search_urls)
+    session.commit()
+
+  def generate_data_for_email():
+    conn = psycopg2.connect(os.environ.get('DATABASE'))
+    cursor = conn.cursor()
+    sql_file = open('queries.sql', 'r')
+    t_path_n_file = "data.csv"
+    with open('data.csv', 'w') as f_output:
+        cursor.copy_expert("""COPY (select * from excel) TO STDOUT WITH (FORMAT CSV)""", f_output)
 
 if __name__ == "__main__":
-  print(os.environ.get('DATABASE'))
-  print(Operations.GetSites()[0].Value)
+  Operations.generate_data_for_email()
