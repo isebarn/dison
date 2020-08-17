@@ -8,8 +8,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import psycopg2
 
-if os.environ.get('DATABASE') is not None:
-  connectionString = os.environ.get('DATABASE')
+if os.environ.get('DISON_DATABASE') is not None:
+  connectionString = os.environ.get('DISON_DATABASE')
 
 engine = create_engine(connectionString, echo=False)
 
@@ -210,7 +210,7 @@ class Operations:
     session.commit()
 
   def generate_data_for_email():
-    conn = psycopg2.connect(os.environ.get('DATABASE'))
+    conn = psycopg2.connect(os.environ.get('DISON_DATABASE'))
     cursor = conn.cursor()
     sql_file = open('queries.sql', 'r')
     t_path_n_file = "data.csv"
