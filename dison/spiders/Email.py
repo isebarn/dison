@@ -11,10 +11,7 @@ class Email:
   def __init__(self, user):
     self.user = user
 
-  def run(self):
-    self.sendmail()
-
-  def sendmail(self):
+  def sendmail(self, recipent):
     from_address= self.user['email']
 
     smtp_server = 'smtp.gmail.com'
@@ -55,8 +52,6 @@ class Email:
     server.quit()
 
 if __name__ == "__main__":
-  email = Email({'email': 'isebarn.data@gmail.com', 'password': 'tommy182'})
-  email.run()
-
+  pass
 
 # https://stackoverflow.com/questions/16512592/login-credentials-not-working-with-gmail-smtp

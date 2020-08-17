@@ -30,6 +30,7 @@ def parse_isbn(paperback_url):
     return paperback_isbn_string.group(1)
 
 class ListSpider(scrapy.Spider):
+  headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2840.71 Safari/539.36'}
   name = "root"
   books = []
   sql_insert_time = 0
@@ -41,10 +42,11 @@ class ListSpider(scrapy.Spider):
     self.urls = int(getattr(self, 'urls', -1))
     start_urls = Operations.GetSites()
 
-    for url in start_urls[0:self.urls]:
+    for url in start_urls:
       yield scrapy.Request(url=url.Value,
         callback=self.parseList, errback=self.errorParseList,
-        meta={'searchURLID': url.Id})
+        meta={'searchURLID': url.Id},
+        headers=self.headers)
 
   def parseList(self, response):
     self.counter += 1
@@ -87,7 +89,8 @@ class ListSpider(scrapy.Spider):
         'category': category.Id,
         'subcategory': subcategory.Id,
         'subsubcategory': subsubcategory.Id,
-        'subsubsubcategory': subsubsubcategory.Id })
+        'subsubsubcategory': subsubsubcategory.Id },
+        headers=self.headers)
 
     next_page = response.xpath("//ul/li/a[contains(text(), 'Next')]/@href").extract_first(None)
 
@@ -97,7 +100,6 @@ class ListSpider(scrapy.Spider):
         meta={'searchURLID': response.meta.get('searchURLID')})
 
   def parseBook(self, response):
-    print(123)
     try:
       title = response.xpath("//span[@id='productTitle']/text()").extract_first().replace('\n', '')
 
@@ -192,8 +194,9 @@ class ListSpider(scrapy.Spider):
       print("SQL Insert book time: {}".format(self.sql_insert_time))
       print("SQL Kindle and Language query: {}".format(self.sql_query_kindle_and_language))
       Operations.generate_data_for_email()
-      email = Email({'email': 'isebarn.data@gmail.com', 'password': 'tommy182'})
-      email.run()
+      email = Email({'email': os.environ.get("EMAIL"), 'password': os.environ.get("PASSWORD")})
+      email.sendmail('isebarn182@gmail.com')
+      email.sendmail(os.environ.get('RECIPENT'))
 
 if __name__ == "__main__":
   urls = ['/Open-Road-Journey-Fourteenth-Departures/dp/0307387550/ref=tmm_pap_title_0?_encoding=UTF8&qid=1597352129&sr=1-77',
