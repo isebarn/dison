@@ -6,13 +6,9 @@ from urllib.parse import urlparse
 import re
 import os
 
-try:
-  from dison.spiders.ORM import Operations, Book
-  from dison.spiders.Email import Email
+from dison.spiders.ORM import Operations, Book
+from dison.spiders.Email import Email
 
-except Exception as e:
-  from ORM import Operations, Book
-  from Email import Email
 
 def parse_isbn(paperback_url):
   paperback_isbn_string = re.search(r'dp/(\d+)/ref', paperback_url)
@@ -35,21 +31,19 @@ class ListSpider(scrapy.Spider):
   books = []
   sql_insert_time = 0
   sql_query_kindle_and_language = 0
-  counter = 0
 
   def start_requests(self):
     self.pages = int(getattr(self, 'pages', 1000))
     self.urls = int(getattr(self, 'urls', -1))
     start_urls = Operations.GetSites()
 
-    for url in start_urls:
+    for url in start_urls[0:self.urls]:
       yield scrapy.Request(url=url.Value,
         callback=self.parseList, errback=self.errorParseList,
         meta={'searchURLID': url.Id},
         headers=self.headers)
 
   def parseList(self, response):
-    self.counter += 1
     parsed_uri = urlparse(response.url)
     self.URL = response.url
     marketplace = '{uri.netloc}'.format(uri=parsed_uri)
@@ -93,8 +87,8 @@ class ListSpider(scrapy.Spider):
         headers=self.headers)
 
     next_page = response.xpath("//ul/li/a[contains(text(), 'Next')]/@href").extract_first(None)
-
-    if next_page != None and self.counter < self.pages:
+    current_page = response.xpath("//ul/li[@class='a-selected']/a/text()").extract_first(None)
+    if next_page != None and current_page != None and int(current_page) < self.pages:
       yield response.follow(next_page,
         callback=self.parseList, errback=self.errorParseList,
         meta={'searchURLID': response.meta.get('searchURLID')})
@@ -107,7 +101,6 @@ class ListSpider(scrapy.Spider):
       self.log(response.url)
       title = ''
 
-    self.log("hello")
     URL = response.request.url
 
     author = response.xpath("//a[@data-asin]/text()").extract_first()
@@ -196,6 +189,7 @@ class ListSpider(scrapy.Spider):
       Operations.generate_data_for_email()
       email = Email({'email': os.environ.get("EMAIL"), 'password': os.environ.get("PASSWORD")})
       email.sendmail('isebarn182@gmail.com')
+      email = Email({'email': os.environ.get("EMAIL"), 'password': os.environ.get("PASSWORD")})
       email.sendmail(os.environ.get('RECIPENT'))
 
 if __name__ == "__main__":
