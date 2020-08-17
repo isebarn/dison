@@ -1,4 +1,5 @@
 import scrapy
+from scrapy_selenium import SeleniumRequest
 from scrapy import signals
 from time import time
 from pprint import pprint
@@ -26,7 +27,6 @@ def parse_isbn(paperback_url):
     return paperback_isbn_string.group(1)
 
 class ListSpider(scrapy.Spider):
-  headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2840.71 Safari/539.36'}
   name = "root"
   books = []
   sql_insert_time = 0
@@ -34,14 +34,14 @@ class ListSpider(scrapy.Spider):
 
   def start_requests(self):
     self.pages = int(getattr(self, 'pages', 1000))
-    self.urls = int(getattr(self, 'urls', -1))
+    self.urls = int(getattr(self, 'urls', 1))
     start_urls = Operations.GetSites()
 
     for url in start_urls[0:self.urls]:
-      yield scrapy.Request(url=url.Value,
+      yield SeleniumRequest(url=url.Value,
         callback=self.parseList, errback=self.errorParseList,
-        meta={'searchURLID': url.Id},
-        headers=self.headers)
+        wait_time=10,
+        meta={'searchURLID': url.Id})
 
   def parseList(self, response):
     parsed_uri = urlparse(response.url)
@@ -74,7 +74,7 @@ class ListSpider(scrapy.Spider):
 
     for url in start_urls:
 
-      yield response.follow(url=url,
+      yield SeleniumRequest(url='https://' + marketplace.Value + url,
         callback=self.parseBook, errback=self.errorParseBook,
         meta={'searchURLID': response.meta.get('searchURLID'),
         'marketplace': marketplace.Id,
@@ -84,13 +84,15 @@ class ListSpider(scrapy.Spider):
         'subcategory': subcategory.Id,
         'subsubcategory': subsubcategory.Id,
         'subsubsubcategory': subsubsubcategory.Id },
-        headers=self.headers)
+        wait_time=2)
 
     next_page = response.xpath("//ul/li/a[contains(text(), 'Next')]/@href").extract_first(None)
     current_page = response.xpath("//ul/li[@class='a-selected']/a/text()").extract_first(None)
     if next_page != None and current_page != None and int(current_page) < self.pages:
-      yield response.follow(next_page,
-        callback=self.parseList, errback=self.errorParseList,
+      yield SeleniumRequest(url='https://' + marketplace.Value + next_page,
+        callback=self.parseList,
+        errback=self.errorParseList,
+        wait_time=2,
         meta={'searchURLID': response.meta.get('searchURLID')})
 
   def parseBook(self, response):
