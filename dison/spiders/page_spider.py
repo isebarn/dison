@@ -103,10 +103,10 @@ class RootSpider(scrapy.Spider):
     if response.xpath("//ul/li[@class='a-last']/a").extract_first(None) != None:
       next_page = marketplace.Value + response.xpath("//ul/li[@class='a-last']/a/@href").extract_first(None)
 
-    elif response.xpath("//ul/li[@class='a-selected']/following-sibling::li").extract_first(None) != None:
+    elif response.xpath("//ul/li[@class='a-selected']/following-sibling::li/@href").extract_first(None) != None:
       next_page = marketplace.Value + response.xpath("//ul/li[@class='a-selected']/following-sibling::li/@href").extract_first(None)
 
-    elif len(response.xpath("//ul/li[@class='a-normal']").extract()) != None:
+    elif len(response.xpath("//ul/li[@class='a-normal']/@href").extract()) != None:
       next_page = marketplace.Value + response.xpath("//ul/li[@class='a-normal']/@href").extract()[-1]
 
     Operations.UpdatePageSearch({'id': response.meta.get('root'), 'value': next_page})
