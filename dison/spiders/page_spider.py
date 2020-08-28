@@ -38,7 +38,7 @@ class RootSpider(scrapy.Spider):
     for url in start_urls:
       if url.Value is not None:
         search_url = url.Value
-        if 'https://' not in search_url:
+        if 'https://' not in search_url:god
           search_url = 'https://' + search_url
         yield scrapy.Request(url=search_url,
           callback=self.parser,
@@ -49,10 +49,6 @@ class RootSpider(scrapy.Spider):
     # If blocked, we return
     if 'productTitle' not in response.text:
       return
-
-    if response.meta.get('root') == 2:
-      with open("god.html", "w") as text_file:
-          text_file.write(response.text)
 
     # Get marketplace from the URL
     parsed_uri = urlparse(response.url)
