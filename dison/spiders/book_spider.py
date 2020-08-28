@@ -9,7 +9,6 @@ import re
 import logging
 from scrapy_selenium import SeleniumRequest
 
-from bs4 import BeautifulSoup
 import urllib3
 import time
 from datetime import datetime, timedelta
