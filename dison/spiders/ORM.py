@@ -103,14 +103,6 @@ class Book(Base):
   SubSubCategoryID = Column('subsubcategory', Integer, ForeignKey('category.id'))
   SubSubSubCategoryID = Column('subsubsubcategory', Integer, ForeignKey('category.id'))
 
-class URLSave(Base):
-  __tablename__ = 'urlsave'
-
-  Id = Column('id', Integer, primary_key=True)
-  Value = Column('value', String)
-
-  def __init__(self, url):
-    self.Value = url
 
 Base.metadata.create_all(engine)
 
