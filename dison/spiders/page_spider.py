@@ -35,7 +35,7 @@ class RootSpider(scrapy.Spider):
 
     start_urls = Operations.QueryPageSearch()
 
-    for url in start_urls[0:5]:
+    for url in start_urls:
       if url.Value is not None:
         yield scrapy.Request(url=url.Value,
           callback=self.parser,
