@@ -37,7 +37,10 @@ class RootSpider(scrapy.Spider):
 
     for url in start_urls:
       if url.Value is not None:
-        yield scrapy.Request(url=url.Value,
+        search_url = url.Value
+        if 'https://' not in search_url:
+          search_url = 'https://' + search_url
+        yield scrapy.Request(url=search_url,
           callback=self.parser,
           errback=self.errbacktest,
           meta={'root': url.Id, 'proxy': choice(self.ROTATING_PROXY_LIST)})
