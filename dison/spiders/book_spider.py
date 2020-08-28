@@ -7,7 +7,6 @@ from pprint import pprint
 import os
 import re
 import logging
-from scrapy_selenium import SeleniumRequest
 
 import urllib3
 import time
