@@ -15,7 +15,6 @@ else:
   from dison.spiders.ORM import Operations, Book
   from dison.spiders.Email import Email
 
-from scrapy_selenium import SeleniumRequest
 from selenium import webdriver
 import selenium as se
 from selenium.webdriver.firefox.options import Options
