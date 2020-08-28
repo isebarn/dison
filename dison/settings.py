@@ -1,15 +1,3 @@
-from shutil import which
-
-SELENIUM_DRIVER_NAME = 'firefox'
-SELENIUM_DRIVER_EXECUTABLE_PATH = which('geckodriver')
-SELENIUM_DRIVER_ARGUMENTS=['-headless']
-
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy_selenium.SeleniumMiddleware': 800
-}
-DEFAULT_REQUEST_HEADERS = {
-    'Referer': 'http://www.google.com' 
-}
 # Scrapy settings for dison project
 #
 # For simplicity, this file contains only settings considered important or
@@ -18,6 +6,11 @@ DEFAULT_REQUEST_HEADERS = {
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+from shutil import which
+
+SELENIUM_DRIVER_NAME = 'firefox'
+SELENIUM_COMMAND_EXECUTOR = 'http://localhost:4444/wd/hub'
+#SELENIUM_DRIVER_ARGUMENTS=['-headless']
 
 BOT_NAME = 'dison'
 
@@ -32,10 +25,13 @@ LOG_FORMAT = '%(levelname)s: %(message)s'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
-DOWNLOAD_DELAY = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
+DOWNLOAD_DELAY = 0
 
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'dison.middlewares.RotateUserAgentMiddleware.RotateUserAgentMiddleware': 543,
-}
+#DOWNLOADER_MIDDLEWARES = {
+  #'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+  #'dison.middlewares.RotateUserAgentMiddleware.RotateUserAgentMiddleware': 543,
+ # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+  #'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+#}
+

@@ -1,0 +1,1580 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"eb",
+				"eBookCategory_1\tabc"
+			],
+			[
+				"Upda",
+				"UpdateBook\tabc"
+			],
+			[
+				"Up",
+				"UpdateBook\tabc"
+			],
+			[
+				"save",
+				"save_queue\tabc"
+			],
+			[
+				"save_",
+				"save_size\tabc"
+			],
+			[
+				"Pa",
+				"PaperbackURL\tabc"
+			],
+			[
+				"parse",
+				"parse_isbn\tabc"
+			],
+			[
+				"paper",
+				"paperback_isbn\t(spider.py)"
+			],
+			[
+				"pap",
+				"paperback_url\tabc"
+			],
+			[
+				"kindle",
+				"kindle_category_names\tabc"
+			],
+			[
+				"__orm",
+				"__orm_query_table\tQuery table"
+			],
+			[
+				"SubSub",
+				"SubSubSubCategoryID\tabc"
+			],
+			[
+				"Cate",
+				"CategoryID\tabc"
+			],
+			[
+				"De",
+				"DepartmentID\tabc"
+			],
+			[
+				"book_",
+				"book_queue\tabc"
+			],
+			[
+				"threa",
+				"threading\tabc"
+			],
+			[
+				"book",
+				"book_queue\tabc"
+			],
+			[
+				"Sav",
+				"SaveBasicBooks\t(ORM.py)"
+			],
+			[
+				"last",
+				"last_page\tabc"
+			],
+			[
+				"prox",
+				"proxy_queue\tabc"
+			],
+			[
+				"find_ele",
+				"find_elements_by_xpath\tabc"
+			],
+			[
+				"url",
+				"url_queue\tabc"
+			],
+			[
+				"proxy",
+				"proxy_queue\tabc"
+			],
+			[
+				"Threa",
+				"ThreadPoolExecutor\tabc"
+			],
+			[
+				"search",
+				"search_url_queue\tabc"
+			],
+			[
+				"mark",
+				"marketplace\tabc"
+			],
+			[
+				"find_",
+				"find_elements_by_xpath\tabc"
+			],
+			[
+				"__or",
+				"__orm_table_key_value\tKey Value pair table"
+			],
+			[
+				"en",
+				"environ\t(Parse.py)"
+			],
+			[
+				"pase",
+				"parseList\tabc"
+			],
+			[
+				"RO",
+				"ROTATING_PROXY_LIST\tabc"
+			],
+			[
+				"fa",
+				"fail\tabc"
+			],
+			[
+				"pro",
+				"proxies\tabc"
+			],
+			[
+				"fail",
+				"failiure\tabc"
+			],
+			[
+				"fe",
+				"fetchPage\tabc"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"init",
+				"init_database\tabc"
+			],
+			[
+				"start",
+				"start_urls\tabc"
+			],
+			[
+				"searche",
+				"searches.txt\t(ORM.py)"
+			],
+			[
+				"market",
+				"marketplace_name\tabc"
+			],
+			[
+				"pape",
+				"paperback_isbn_string\tabc"
+			],
+			[
+				"cate",
+				"category_url\tabc"
+			],
+			[
+				"sear",
+				"search_urls\tabc"
+			],
+			[
+				"read",
+				"read_file\tabc"
+			],
+			[
+				"sql",
+				"sql_query_kindle_and_language"
+			],
+			[
+				"sea",
+				"searchURLID"
+			],
+			[
+				"pa",
+				"paperback_isbn"
+			],
+			[
+				"image",
+				"image_links"
+			],
+			[
+				"Search",
+				"SearchURL"
+			],
+			[
+				"marke",
+				"marketplace_name"
+			],
+			[
+				"subsub",
+				"subsubcategory"
+			],
+			[
+				"sub",
+				"subcategory"
+			],
+			[
+				"stasr",
+				"start_urls"
+			],
+			[
+				"star",
+				"start_urls"
+			],
+			[
+				"my",
+				"mydoc"
+			],
+			[
+				"html",
+				"html_links"
+			],
+			[
+				"rea",
+				"read_sites_file"
+			],
+			[
+				"root",
+				"root_url"
+			],
+			[
+				"child",
+				"child_collection_idx"
+			],
+			[
+				"parent",
+				"parent_urls"
+			],
+			[
+				"get",
+				"get_links_from_mongo_collection_above_current_level"
+			],
+			[
+				"lvel",
+				"levels"
+			],
+			[
+				"col",
+				"collection"
+			],
+			[
+				"level",
+				"level_idx"
+			],
+			[
+				"item",
+				"item_is_local_url"
+			],
+			[
+				"coll",
+				"collection_name"
+			],
+			[
+				"parse_",
+				"parse_level"
+			],
+			[
+				"wor",
+				"working_urls"
+			],
+			[
+				"link",
+				"link_id"
+			],
+			[
+				"leng",
+				"length_after"
+			],
+			[
+				"work",
+				"working_len_after"
+			],
+			[
+				"co",
+				"collection"
+			],
+			[
+				"get_",
+				"get_page_by_selenium"
+			],
+			[
+				"sae",
+				"save_to_mongo"
+			],
+			[
+				"pare",
+				"parent_url"
+			],
+			[
+				"remove",
+				"remove_all_prefixes"
+			],
+			[
+				"pdf",
+				"pdf_link"
+			],
+			[
+				"filter",
+				"filter_conditions"
+			],
+			[
+				"data-model",
+				"data-modeltype"
+			],
+			[
+				"yad",
+				"yad2_archives"
+			],
+			[
+				"find",
+				"find_element_by_xpath"
+			],
+			[
+				"v-b",
+				"v-btn\tBtn component - Vuetify"
+			],
+			[
+				"Ge",
+				"GetListings"
+			],
+			[
+				"pr",
+				"provision"
+			],
+			[
+				"class",
+				"class_marker"
+			],
+			[
+				"price",
+				"price_div"
+			],
+			[
+				"pres",
+				"presec_class_list"
+			],
+			[
+				"list",
+				"listings_items"
+			],
+			[
+				"data",
+				"data-id"
+			],
+			[
+				"listing",
+				"listings_list"
+			],
+			[
+				"unq",
+				"unique_listed_ads"
+			],
+			[
+				"unique",
+				"unique_listed_ads"
+			],
+			[
+				"envir",
+				"environment"
+			],
+			[
+				"No",
+				"NoSuchElementException"
+			],
+			[
+				"new_",
+				"new_parse"
+			],
+			[
+				"new",
+				"new_ads"
+			],
+			[
+				"N",
+				"NoSuchElementException"
+			],
+			[
+				"find_element_by",
+				"find_elements_by_xpath"
+			],
+			[
+				"getA",
+				"get_attribute"
+			],
+			[
+				"restr",
+				"restricted_access_div"
+			],
+			[
+				"res",
+				"restricted_access_div"
+			],
+			[
+				"fin",
+				"find_element_by_id"
+			],
+			[
+				"open",
+				"openPage"
+			],
+			[
+				"send",
+				"send_messages"
+			],
+			[
+				"GetA",
+				"GetAll"
+			],
+			[
+				"sou",
+				"source"
+			],
+			[
+				"source",
+				"sourceToBS4"
+			],
+			[
+				"sour",
+				"sourceToBS4"
+			],
+			[
+				"rating",
+				"ratingElements"
+			],
+			[
+				"feed",
+				"feedbackPercentage"
+			],
+			[
+				"order",
+				"ordersElements"
+			],
+			[
+				"shi",
+				"shippingDurationElements"
+			],
+			[
+				"text",
+				"textContent"
+			],
+			[
+				"disc",
+				"discountElements"
+			],
+			[
+				"dis",
+				"discountElements"
+			],
+			[
+				"set",
+				"setCookie"
+			],
+			[
+				"cookie",
+				"cookieObject"
+			],
+			[
+				"unrea",
+				"unread_ads"
+			],
+			[
+				"unre",
+				"unread_ads"
+			],
+			[
+				"un",
+				"unread_ads"
+			],
+			[
+				"fetch",
+				"fetchAdFromPage"
+			],
+			[
+				"GetAll",
+				"GetAllKeywords"
+			],
+			[
+				"Key",
+				"Keyword_Id"
+			],
+			[
+				"key",
+				"keywordQuery"
+			],
+			[
+				"driver",
+				"driverToBS4"
+			],
+			[
+				"sold",
+				"numSold"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"dateD",
+				"dateDiffViable"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"add fo",
+				"Project: Add Folder"
+			],
+			[
+				"trai",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"tra",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"c",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert to",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"convert to spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"project",
+				"Project: Refresh Folders"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"convert",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"add ",
+				"Project: Add Folder"
+			],
+			[
+				"virtual",
+				"Virtualenv: Activate"
+			],
+			[
+				"trail",
+				"Trailing Spaces: Delete Trailing Spaces"
+			],
+			[
+				"pretty",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"syn",
+				"Set Syntax: Python"
+			],
+			[
+				"add f",
+				"Project: Add Folder"
+			],
+			[
+				"api",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"json",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"ad",
+				"Project: Add Folder"
+			],
+			[
+				"json va",
+				"Pretty JSON: Validate"
+			],
+			[
+				"remove",
+				"Package Control: Remove Repository"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"add re",
+				"Package Control: Add Repository"
+			],
+			[
+				"add red",
+				"Project: Add Folder"
+			],
+			[
+				"diff",
+				"FileDiffs: Menu"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"add fol",
+				"Project: Add Folder"
+			],
+			[
+				"add fi",
+				"Package Control: Satisfy Dependencies"
+			],
+			[
+				"javascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set syntax javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set syntax js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"add folder",
+				"Project: Add Folder"
+			],
+			[
+				"set syntax: js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"convert to s",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"ADD",
+				"Project: Add Folder"
+			],
+			[
+				"convert ",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"close all",
+				"File: Close All"
+			],
+			[
+				"convert to ",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"conver",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert to sp",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert to space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"make sni",
+				"SnippetMaker: Make Snippet"
+			],
+			[
+				"to spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert inde",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"snippetmaker",
+				"SnippetMaker: Make Snippet"
+			],
+			[
+				"snipp",
+				"Snippet: Anonymous Function"
+			],
+			[
+				"Snippet: ",
+				"Snippet: if"
+			],
+			[
+				"convert tp",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"python",
+				"Set Syntax: Python3"
+			],
+			[
+				"build",
+				"Build: New Build System"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"syntax vue",
+				"Set Syntax: Vue Component"
+			],
+			[
+				"save pro",
+				"Project: Save As"
+			],
+			[
+				"set syntax: xml",
+				"Set Syntax: XML"
+			],
+			[
+				"set syntax: asp",
+				"Set Syntax: ASP"
+			],
+			[
+				"white",
+				"Whitespace: Remove Trailing Whitespace"
+			],
+			[
+				"new bui",
+				"Build: New Build System"
+			],
+			[
+				"syntax py",
+				"Set Syntax: Python"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/david/betting"
+	],
+	"file_history":
+	[
+		"/home/david/car/api/Parse.py",
+		"/home/david/dison/dison/spiders/spider.py",
+		"/home/david/Downloads/Webshare 5 proxies (8).txt",
+		"/home/david/dison/dison/settings.py",
+		"/home/david/.config/sublime-text-3/Packages/User/scrapy.sublime-build",
+		"/home/david/dison/dison/spiders/ORM.py",
+		"/home/david/craigslist/Parse.py",
+		"/home/david/archive/mongo/Parse.py",
+		"/home/david/archive/mongo/root.py",
+		"/home/david/archive/mongo/level1.py",
+		"/home/david/dison/dison/selenium_scraper.py",
+		"/home/david/proj/Parse.py",
+		"/home/david/archive/faster/faster/spiders/fast.py",
+		"/home/david/Downloads/Webshare 5 proxies (7).txt",
+		"/home/david/Downloads/Webshare 5 proxies (6).txt",
+		"/home/david/dison/requirements.txt",
+		"/home/david/capcha/captcha-middleware/requirements.txt",
+		"/home/david/capcha/captcha-middleware/README.rst",
+		"/home/david/Downloads/sentiment.py",
+		"/home/david/Downloads/Webshare 5 proxies (5).txt",
+		"/home/david/Downloads/Webshare 100 proxies (1).txt",
+		"/home/david/Downloads/Webshare 100 proxies (2).txt",
+		"/home/david/Downloads/Webshare 5 proxies (4).txt",
+		"/home/david/Downloads/Webshare 100 proxies.txt",
+		"/home/david/Downloads/Webshare 5 proxies (3).txt",
+		"/home/david/Downloads/Webshare 5 proxies (2).txt",
+		"/home/david/Downloads/Webshare 5 proxies (1).txt",
+		"/home/david/Downloads/Webshare 5 proxies.txt",
+		"/home/david/dison/venv/bin/activate",
+		"/home/david/Downloads/Webshare 10 proxies (1).txt",
+		"/home/david/Downloads/Webshare 10 proxies.txt",
+		"/tmp/tinyubuntu-mad97k/spider.py",
+		"/tmp/tinyubuntu-g4kh1u/ORM.py",
+		"/tmp/tinyubuntu-_vd2fc/queries.sql",
+		"/tmp/tinyubuntu-pzwmrg/spi",
+		"/tmp/tinyubuntu-ccshcg/activate",
+		"/tmp/tinyubuntu-a3unt8/spider.py",
+		"/tmp/tinyubuntu-w642ed/settings.py",
+		"/tmp/tinyubuntu-7yx0l1/spider.py",
+		"/home/david/dison/dison/middlewares/RotateUserAgentMiddleware.py",
+		"/home/david/dison/dison/RotateUserAgentMiddleware.py",
+		"/home/david/dison/dison.sublime-project",
+		"/tmp/tinyubuntu-bzegxq/spider.py",
+		"/tmp/tinyubuntu-otk7_9/activate",
+		"/tmp/tinyubuntu-966dkg/ORM.py",
+		"/tmp/tinyubuntu-ye_h2d/activate",
+		"/tmp/tinyubuntu-wb0efh/spider.py",
+		"/tmp/tinyubuntu-sc9bvi/ORM.py",
+		"/tmp/tinyubuntu-mbxiq6/activate",
+		"/home/david/dison/dison/spiders/Email.py",
+		"/home/david/dison/dison/fast.py",
+		"/tmp/localhost-m57bay/Email.py",
+		"/tmp/tinyubuntu-a5uw9b/spider.py",
+		"/tmp/tinyubuntu-im3q4h/settings.py",
+		"/tmp/localhost-_ikrku/ORM.py",
+		"/tmp/localhost-e_4695/spider.py",
+		"/tmp/localhost-j04fqx/ORM.py",
+		"/tmp/tinyubuntu-msr39s/ORM.py",
+		"/tmp/tinyubuntu-k21l71/ORM.py",
+		"/home/david/dison/.gitignore",
+		"/home/david/dison/dison/spiders/data.csv",
+		"/home/david/dison/queries.sql",
+		"/home/david/craigslist/Email.py",
+		"/home/david/dison/ORM.py",
+		"/home/david/dison/dison/spiders/searches.txt",
+		"/home/david/dison/dison/spiders/advert.txt",
+		"/tmp/tinyubuntu-a9d282/settings.py",
+		"/tmp/tinyubuntu-3mvqz3/activate",
+		"/home/david/envvars.txt",
+		"/home/david/dison/README.md",
+		"/home/david/.config/sublime-text-3/Packages/User/psql.sublime-build",
+		"/home/david/dison/dison/dison/settings.py",
+		"/home/david/dison/dison/dison/spiders/amazon.py",
+		"/home/david/dison/dison/dison/spiders/ORM.py",
+		"/home/david/SAM/tutorial/spiders/quotes_spider.py",
+		"/home/david/craigslist/ORM.py",
+		"/home/david/SAM/tutorial/settings.py",
+		"/home/david/craigslist/craigslist.sublime-project",
+		"/home/david/SAM/sites.txt",
+		"/home/david/prop.txt",
+		"/home/david/SAM/SAM.sublime-project",
+		"/home/david/mongo/mongo.sublime-workspace",
+		"/home/david/mongo/mongo.sublime-project",
+		"/home/david/scrapy/tutorial/tutorial/spiders/quotes_spider.py",
+		"/home/david/SAM/README",
+		"/home/david/SAM/.gitignore",
+		"/home/david/SAM/README.md",
+		"/home/david/mongo/README.md",
+		"/home/david/mongo/Parse.py",
+		"/home/david/scrapy/tutorial/tutorial/settings.py",
+		"/home/david/scrapy/tutorial/sites.txt",
+		"/home/david/mongo/sites.txt",
+		"/home/david/test/Parse.py",
+		"/home/david/mongo/level2.py",
+		"/home/david/mongo/level1.py",
+		"/home/david/mongo/root.py",
+		"/home/david/mongo/test.txt",
+		"/home/david/mongo/README",
+		"/home/david/mongo/.gitignore",
+		"/home/david/upworkreader/API.py",
+		"/home/david/mongo/database.py",
+		"/home/david/mongo/threads.py",
+		"/home/david/mongo/web_calls.py",
+		"/home/david/mongo/url_check.py",
+		"/tmp/tinyubuntu-7cqral/docker-compose.yml",
+		"/tmp/tinyubuntu-udwee2/docker-compose.yml",
+		"/tmp/tinyubuntu-cv5_ha/mongo.conf",
+		"/tmp/tinyubuntu-xoierd/tbtapi.conf",
+		"/tmp/tinyubuntu-hhf44g/nginx.conf",
+		"/tmp/tinyubuntu-p7l2yz/docker-compose.yml",
+		"/home/david/.kvikna-archive/keep/owncloud/docker-compose.yml",
+		"/tmp/tinyubuntu-f7od_i/docker-compose.yml",
+		"/tmp/tinyubuntu-wkzdd0/Parse.py",
+		"/home/david/.kvikna-archive/sc/sc_test_module/temperature_module.py",
+		"/home/david/upworkreader/upwork.txt",
+		"/home/david/sites.txt",
+		"/tmp/localhost-gw6tz4/ORM.py",
+		"/tmp/tinyubuntu-4zd9ri/API.py",
+		"/tmp/localhost-h4e_lh/Parse.py",
+		"/tmp/localhost-pbezui/run.py",
+		"/tmp/localhost-uq6hfl/run.py",
+		"/tmp/localhost-oq3eo7/ORM.py",
+		"/tmp/localhost-4fy0tm/Parse.py",
+		"/tmp/tinyubuntu-wgbtv3/API.py",
+		"/tmp/tinyubuntu-xnp7ab/API.py",
+		"/tmp/tinyubuntu-zt13wq/API.py",
+		"/tmp/tinyubuntu-ju0mre/API.py",
+		"/home/david/proj/venv/bin/activate"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 97.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 116.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.project_environment_log":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/python3.sublime-build",
+	"project": "betting.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"email",
+				"dison/spiders/Email.py"
+			],
+			[
+				"orm",
+				"ORM.py"
+			],
+			[
+				"api",
+				"API.py"
+			],
+			[
+				"Parse",
+				"craigslist/Parse.py"
+			],
+			[
+				"Disco",
+				"upworkreader/Discord.py"
+			],
+			[
+				"parse",
+				"Parse.py"
+			],
+			[
+				"text",
+				"text.html"
+			],
+			[
+				"nuxt",
+				"alicompare/nuxt.config.js"
+			],
+			[
+				"mani",
+				"extension/manifest.json"
+			],
+			[
+				"default",
+				"alicompare/layouts/default.vue"
+			],
+			[
+				"add",
+				"README.md"
+			],
+			[
+				"run",
+				"run.py"
+			],
+			[
+				"ORM",
+				"ORM.py"
+			],
+			[
+				"index.vue",
+				"alicompare/pages/index.vue"
+			],
+			[
+				"index",
+				"pages/index.vue"
+			],
+			[
+				"defau",
+				"layouts/default.vue"
+			],
+			[
+				"manage",
+				"testrepo/manage.py"
+			],
+			[
+				".env",
+				".env"
+			],
+			[
+				"package.j",
+				"package.json"
+			],
+			[
+				"package.json",
+				"package.json"
+			],
+			[
+				"env",
+				".env"
+			],
+			[
+				"nuxt.",
+				"nuxt.config.js"
+			],
+			[
+				"recipes",
+				"pages/recipes.vue"
+			],
+			[
+				"shoppinglist.js",
+				"store/shoppinglist.js"
+			],
+			[
+				"users/log",
+				"components/users/login.vue"
+			],
+			[
+				"login",
+				"pages/login.vue"
+			],
+			[
+				"mobile",
+				"layouts/mobile_recipes.vue"
+			],
+			[
+				"newre",
+				"pages/newrecipe.vue"
+			],
+			[
+				"mobile.vue",
+				"layouts/mobile.vue"
+			],
+			[
+				"giti",
+				".gitignore"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"recipepre",
+				"components/recipes/RecipePreview.vue"
+			],
+			[
+				"newreci",
+				"store/newrecipe.js"
+			],
+			[
+				"recipe.js",
+				"store/recipes.js"
+			],
+			[
+				"shopping",
+				"store/shoppinglist.js"
+			],
+			[
+				"shoppi",
+				"pages/shoppinglist.vue"
+			],
+			[
+				"mobie",
+				"layouts/mobile.vue"
+			],
+			[
+				"newrecipe",
+				"store/newrecipe.js"
+			],
+			[
+				"login.",
+				"pages/login.vue"
+			],
+			[
+				"login.vue",
+				"components/facebookUser/Login.vue"
+			],
+			[
+				"faceb",
+				"middleware/facebookUser.js"
+			],
+			[
+				"facebook",
+				"components/facebookUser/Login.vue"
+			],
+			[
+				"review",
+				"components/newrecipe/Review.vue"
+			],
+			[
+				"",
+				".env"
+			],
+			[
+				".en",
+				".env"
+			],
+			[
+				"fb-sd",
+				"plugins/facebookUsers/fb-sdk.js"
+			],
+			[
+				"nuxt.con",
+				"nuxt.config.js"
+			],
+			[
+				"nuxt.c",
+				"nuxt.config.js"
+			],
+			[
+				"facebo",
+				"plugins/facebookUsers/facebookUsers.js"
+			],
+			[
+				"ingre",
+				"components/newrecipe/IngredientView.vue"
+			],
+			[
+				"recipes.js",
+				"store/recipes.js"
+			],
+			[
+				"newrecipe.js",
+				"store/newrecipe.js"
+			],
+			[
+				"recipe.vue",
+				"pages/recipe.vue"
+			],
+			[
+				"recipe",
+				"pages/recipes.vue"
+			],
+			[
+				"recipes.vue",
+				"pages/recipes.vue"
+			],
+			[
+				"index.",
+				"pages/index.vue"
+			],
+			[
+				"newrecipe.vue",
+				"layouts/newrecipe.vue"
+			],
+			[
+				"defaul",
+				"layouts/default.vue"
+			],
+			[
+				"descri",
+				"components/newrecipe/Description.vue"
+			],
+			[
+				"instruc",
+				"components/newrecipe/Instructions.vue"
+			],
+			[
+				"description",
+				"components/newrecipe/Description.vue"
+			],
+			[
+				"instru",
+				"components/newrecipe/Instructions.vue"
+			],
+			[
+				"Ingredients",
+				"components/newrecipe/Ingredients.vue"
+			],
+			[
+				"descr",
+				"components/newrecipe/Description.vue"
+			],
+			[
+				"desc",
+				"components/newrecipe/Description.vue"
+			],
+			[
+				"stepvi",
+				"components/newrecipe/StepView.vue"
+			],
+			[
+				"index.js",
+				"store/index.js"
+			],
+			[
+				"admin",
+				"pages/admin.vue"
+			],
+			[
+				"module",
+				"components/Module.vue"
+			],
+			[
+				"reci",
+				"pages/recipeCreate.vue"
+			],
+			[
+				"module.",
+				"components/Module.vue"
+			],
+			[
+				"settings",
+				"pages/settings.vue"
+			],
+			[
+				"modulesett",
+				"components/ModuleSettings.vue"
+			],
+			[
+				"module.vue",
+				"components/Module.vue"
+			],
+			[
+				"nuxt.co",
+				"nuxt.config.js"
+			],
+			[
+				"register",
+				"components/Register.vue"
+			],
+			[
+				"VueSvgGauge",
+				"node_modules/vue-svg-gauge/dist/vue-svg-gauge.js"
+			],
+			[
+				"modulede",
+				"components/ModuleDescription.vue"
+			],
+			[
+				"controller",
+				"sc_controller/controller.py"
+			],
+			[
+				"api.yml",
+				"api.yml"
+			],
+			[
+				"signalr.",
+				"plugins/signalrchat/signalr.js"
+			],
+			[
+				"convers",
+				"components/chat/ConversationList.vue"
+			],
+			[
+				"users.js",
+				"store/users.js"
+			],
+			[
+				"query",
+				"plugins/queryApi.js"
+			],
+			[
+				"map.js",
+				"store/modules/map.js"
+			],
+			[
+				"map.vue",
+				"layouts/map.vue"
+			],
+			[
+				"queryA",
+				"web/plugins/queryApi.js"
+			],
+			[
+				"queryApi",
+				"plugins/queryApi.js"
+			],
+			[
+				"queryapi",
+				"plugins/queryApi.js"
+			],
+			[
+				"peoplearound",
+				"store/modules/peoplearound.js"
+			],
+			[
+				"people",
+				"components/PeopleAround.vue"
+			],
+			[
+				"peoplear",
+				"components/PeopleAround.vue"
+			],
+			[
+				"default.vue",
+				"layouts/default.vue"
+			],
+			[
+				"nuxt.config",
+				"nuxt.config.js"
+			],
+			[
+				"charts.js",
+				"dashboard/plugins/Charts.js"
+			],
+			[
+				"covid",
+				"dashboard/components/Covid.vue"
+			],
+			[
+				"calendar",
+				"dashboard/components/Calendar.vue"
+			],
+			[
+				"ships",
+				"dashboard/components/Ships.vue"
+			],
+			[
+				"assets/",
+				"Web/assets/js/auth.js"
+			],
+			[
+				"app",
+				"MockDataSource/app.py"
+			],
+			[
+				"national",
+				"store/signup/national.js"
+			],
+			[
+				"users",
+				"plugins/api/users.js"
+			],
+			[
+				"api.js",
+				".nuxt/yamlful/api.js"
+			],
+			[
+				"persons.js",
+				"plugins/api/persons.js"
+			],
+			[
+				"user.js",
+				"plugins/api/users.js"
+			],
+			[
+				"national.js",
+				"store/signup/national.js"
+			],
+			[
+				"en",
+				"static/content-en.json"
+			],
+			[
+				"swedis",
+				"components/signup/SwedishNationalUserPassword.vue"
+			],
+			[
+				"muni",
+				"plugins/api/municipalities.js"
+			],
+			[
+				"api.y",
+				"api.yml"
+			],
+			[
+				"yaml",
+				".nuxt/yamlful/api.js"
+			],
+			[
+				"natio",
+				"store/signup/national.js"
+			],
+			[
+				"i18",
+				"plugins/i18n.js"
+			],
+			[
+				"nation",
+				"store/signup/national.js"
+			],
+			[
+				"swedishnational",
+				"components/signup/SwedishNationalPersonInformation.vue"
+			],
+			[
+				"userpass",
+				"components/signup/UserPassword.vue"
+			],
+			[
+				"swed",
+				"components/signup/SwedishNationalUserPassword.vue"
+			],
+			[
+				"nationa",
+				"store/signup/national.js"
+			],
+			[
+				"swedish",
+				"components/signup/SwedishNationalUserPassword.vue"
+			],
+			[
+				"helpers",
+				"plugins/Helpers.js"
+			],
+			[
+				"signup.js",
+				"store/signup/index.js"
+			],
+			[
+				"signup",
+				"pages/signup.vue"
+			],
+			[
+				"herl",
+				"plugins/Helpers.js"
+			],
+			[
+				"ssfta",
+				"store/signup/ssfta.js"
+			],
+			[
+				"lookup",
+				"components/signup/SSFTALookup.vue"
+			],
+			[
+				"persons",
+				"plugins/api/persons.js"
+			],
+			[
+				"api.ym",
+				"api.yml"
+			],
+			[
+				"api.",
+				"api.yml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/upworkreader/upwork.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 274.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

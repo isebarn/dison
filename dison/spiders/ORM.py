@@ -7,6 +7,7 @@ from sqlalchemy import ForeignKey, desc, create_engine, func, Column, BigInteger
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import psycopg2
+from time import time
 
 if os.environ.get('DISON_DATABASE') is not None:
   connectionString = os.environ.get('DISON_DATABASE')
@@ -29,6 +30,16 @@ class SearchURL(Base):
   def __init__(self, value, advert):
     self.Value = value
     self.Advert = advert
+
+class PageSearch(Base):
+  __tablename__ = 'page_search'
+
+  Id = Column('id', Integer, primary_key=True)
+  Value = Column('value', String)
+
+  def __init__(self, data):
+    self.Id = data['id']
+    self.Value = data['value']
 
 class Marketplace(Base):
   __tablename__ = 'marketplace'
@@ -65,6 +76,7 @@ class Language(Base):
 class Book(Base):
   __tablename__ = 'book'
 
+  Id = Column('id', Integer, primary_key=True, autoincrement=True)
   ASIN = Column('isbn', String, primary_key=True)
   Title = Column('title', String)
   URL = Column('url', String)
@@ -91,7 +103,14 @@ class Book(Base):
   SubSubCategoryID = Column('subsubcategory', Integer, ForeignKey('category.id'))
   SubSubSubCategoryID = Column('subsubsubcategory', Integer, ForeignKey('category.id'))
 
+class URLSave(Base):
+  __tablename__ = 'urlsave'
 
+  Id = Column('id', Integer, primary_key=True)
+  Value = Column('value', String)
+
+  def __init__(self, url):
+    self.Value = url
 
 Base.metadata.create_all(engine)
 
@@ -100,7 +119,28 @@ Session.configure(bind=engine)
 session = Session()
 
 class Operations:
+
+  def UpdatePageSearch(data):
+    page_search = session.query(PageSearch).filter_by(Id=data['id']).first()
+    if page_search == None:
+      session.add(PageSearch(data))
+
+    else:
+      page_search.Value = data['value']
+
+    session.commit()
+
   def GetSites():
+    return session.query(SearchURL).all()
+
+  def QueryPageSearch():
+    return session.query(PageSearch).all()
+
+  def SaveURLSave(url):
+    session.add(URLSave(url))
+    session.commit()
+
+  def GetSiteUpdatePageSearchs():
     return session.query(SearchURL).all()
 
   def GetOrCreateMarketplace(marketplace_name):
@@ -192,6 +232,7 @@ class Operations:
     db_book = session.query(Book
     ).filter_by(ASIN=book.ASIN, MarketplaceID=book.MarketplaceID, SubCategoryID=book.SubCategoryID
     ).delete()
+    session.commit()
 
     session.add(book)
     session.commit()
@@ -217,5 +258,34 @@ class Operations:
     with open('data.csv', 'w') as f_output:
         cursor.copy_expert("""COPY (select * from excel) TO STDOUT WITH (FORMAT CSV)""", f_output)
 
+  def QueryUnfetchedBooks():
+    return session.query(Book).limit(500).all()
+
+  def Commit():
+    session.commit()
+
+  def UpdateBook(save):
+    start = time()
+    book = session.query(Book).filter_by(Id=save['id']).first()
+    book.Title = save['Title']
+    book.Author = save['Author']
+    book.LanguageID = save['LanguageID']
+    book.eBookCategory_1 = save['eBookCategory_1']
+    book.eBookCategory_2 = save['eBookCategory_2']
+    book.eBookCategory_3 = save['eBookCategory_3']
+    book.PaperbackURL = save['PaperbackURL']
+    book.PaperbackISBN = save['PaperbackISBN']
+
+    session.commit()
+    print("save: {}".format(time() - start))
+
 if __name__ == "__main__":
-  Operations.generate_data_for_email()
+  start_urls = Operations.QueryPageSearch()
+
+  if len(start_urls) == 0:
+    sites = Operations.GetSites()
+    for site in sites:
+      Operations.UpdatePageSearch({'id': site.Id, 'value': site.Value})
+
+  start_urls = Operations.QueryPageSearch()
+  print(len(start_urls))
