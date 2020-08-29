@@ -60,7 +60,10 @@ class BookSpider(scrapy.Spider):
     self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2840.71 Safari/539.36'}
 
     for book in Operations.QueryUnfetchedBooks()[0:500]:
-      yield scrapy.Request(url=book.URL,
+      book_url = book.URL
+      if '://' not in book_url:
+        book_url = 'https://' + book_url
+      yield scrapy.Request(url=book_url,
         callback=self.parser,
         errback=self.errbacktest,
         headers=self.headers,

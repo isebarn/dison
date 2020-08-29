@@ -38,7 +38,7 @@ class RootSpider(scrapy.Spider):
     for url in start_urls:
       if url.Value is not None:
         search_url = url.Value
-        if 'https://' not in search_url:
+        if '://' not in search_url:
           search_url = 'https://' + search_url
 
         yield scrapy.Request(url=search_url,
