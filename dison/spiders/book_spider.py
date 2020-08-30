@@ -53,13 +53,13 @@ class MyException(Exception):
 class BookSpider(scrapy.Spider):
   name = "book"
   ready = []
-  ROTATING_PROXY_LIST = ['p.webshare.io:19999','p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003']
+  ROTATING_PROXY_LIST = ['p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003','p.webshare.io:20004','p.webshare.io:20005','p.webshare.io:20006','p.webshare.io:20007','p.webshare.io:20008','p.webshare.io:20009','p.webshare.io:20010','p.webshare.io:20011','p.webshare.io:20012','p.webshare.io:20013','p.webshare.io:20014','p.webshare.io:20015','p.webshare.io:20016','p.webshare.io:20017','p.webshare.io:20018','p.webshare.io:20019']
   success = 0
   fail = 0
   def start_requests(self):
     self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2840.71 Safari/539.36'}
 
-    for book in Operations.QueryUnfetchedBooks()[0:500]:
+    for book in Operations.QueryUnfetchedBooks():
       book_url = book.URL
       if '://' not in book_url:
         book_url = 'https://' + book_url
@@ -105,6 +105,7 @@ class BookSpider(scrapy.Spider):
       if language == None:
         language = response.xpath("//span[contains(text(), 'Language:')]").xpath("../text()").extract_first(None)
 
+      output('language: {}'.format(language))
       book['LanguageID'] = Operations.GetOrCreateLanguage(language.strip()).Id
 
     except Exception as e:

@@ -251,7 +251,7 @@ class Operations:
         cursor.copy_expert("""COPY (select * from excel) TO STDOUT WITH (FORMAT CSV)""", f_output)
 
   def QueryUnfetchedBooks():
-    return session.query(Book).limit(500).all()
+    return session.query(Book).limit(2000).all()
 
   def Commit():
     session.commit()
