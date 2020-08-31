@@ -250,13 +250,12 @@ class Operations:
         cursor.copy_expert("""COPY (select * from excel) TO STDOUT WITH (FORMAT CSV)""", f_output)
 
   def QueryUnfetchedBooks(volume=500):
-    return session.query(Book).limit(volume).all()
+    return session.query(Book).filter_by(Title=None).limit(volume).all()
 
   def Commit():
     session.commit()
 
   def UpdateBook(save):
-    start = time()
     book = session.query(Book).filter_by(Id=save['id']).first()
     book.Title = save['Title']
     book.Author = save['Author']
@@ -268,15 +267,6 @@ class Operations:
     book.PaperbackISBN = save['PaperbackISBN']
 
     session.commit()
-    print("save: {}".format(time() - start))
 
 if __name__ == "__main__":
-  start_urls = Operations.QueryPageSearch()
-
-  if len(start_urls) == 0:
-    sites = Operations.GetSites()
-    for site in sites:
-      Operations.UpdatePageSearch({'id': site.Id, 'value': site.Value})
-
-  start_urls = Operations.QueryPageSearch()
-  print(len(start_urls))
+  print(session.query(Book).filter_by(Title=None).count())

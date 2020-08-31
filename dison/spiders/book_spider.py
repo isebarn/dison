@@ -25,6 +25,7 @@ if __name__ == '__main__':
 else:
   from dison.spiders.ORM import Operations, Book
   from dison.spiders.Email import Email
+from scrapy_selenium import SeleniumRequest
 
 def output(text):
   with open("output.txt", "a") as text_file:
@@ -67,10 +68,11 @@ class BookSpider(scrapy.Spider):
       book_url = book.URL
       if '://' not in book_url:
         book_url = 'https://' + book_url
-      yield scrapy.Request(url=book_url,
+      yield SeleniumRequest(url=book_url,
         callback=self.parser,
         errback=self.errbacktest,
         headers=self.headers,
+        screenshot=True,
         meta={'id': book.Id, 'proxy': choice(self.ROTATING_PROXY_LIST)})
 
   def exception_is_ban(self, request, exception):
@@ -89,6 +91,8 @@ class BookSpider(scrapy.Spider):
     return False
 
   def parser(self, response):
+    with open("{}.png".format(response.meta.get('id')), 'wb') as image_file:
+        image_file.write(response.meta['screenshot'])
     book = {'id': response.meta.get('id')}
     book['Title'] = response.xpath("//span[@id='productTitle']/text()").extract_first()
     if book['Title'] == None:
@@ -117,6 +121,9 @@ class BookSpider(scrapy.Spider):
       if language == None:
         language = ''
 
+      with open("language.txt", "a") as text_file:
+          text_file.write("{}\n\n".format(language))
+
       book['LanguageID'] = Operations.GetOrCreateLanguage(language.strip()).Id
 
     except Exception as e:
@@ -132,10 +139,8 @@ class BookSpider(scrapy.Spider):
         kindle_category_urls = response.xpath("//div[@data-feature-name='detailBullets']/ul/li/span").xpath(".//a/@href").extract()[1:]
         debug("{} - {} \n\n".format(str(kindle_category_names), response.url))
 
-        if len(kindle_category_names) == 0:
-          with open("category.html", "w") as text_file:
-              text_file.write(response.text)
-
+      with open("language.txt", "a") as text_file:
+          text_file.write("{}\n\n".format(kindle_category_names))
 
       if len(kindle_category_names) > 0:
         book['eBookCategory_1'] = Operations.GetOrCreateEBookCategory(kindle_category_names[0], kindle_category_urls[0]).Id

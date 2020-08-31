@@ -9,7 +9,7 @@
 from shutil import which
 
 SELENIUM_DRIVER_NAME = 'firefox'
-SELENIUM_COMMAND_EXECUTOR = 'http://localhost:4444/wd/hub'
+SELENIUM_COMMAND_EXECUTOR = which('geckodriver')
 #SELENIUM_DRIVER_ARGUMENTS=['-headless']
 
 BOT_NAME = 'dison'
@@ -27,7 +27,10 @@ ROBOTSTXT_OBEY = False
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS_PER_DOMAIN = 16
 DOWNLOAD_DELAY = 0
-
+DOWNLOADER_MIDDLEWARES = {
+  'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+  'scrapy_selenium.SeleniumMiddleware': 800
+}
 #DOWNLOADER_MIDDLEWARES = {
   #'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
   #'dison.middlewares.RotateUserAgentMiddleware.RotateUserAgentMiddleware': 543,
