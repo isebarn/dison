@@ -2,7 +2,7 @@ import scrapy
 from scrapy import signals
 from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
-from time import time
+from time import time, sleep
 from pprint import pprint
 import os
 import re
@@ -15,7 +15,6 @@ import urllib.parse as urlparse
 from urllib.parse import parse_qs
 import threading
 from multiprocessing import Queue
-from time import sleep
 from urllib3 import ProxyManager, make_headers
 from random import choice
 
@@ -30,6 +29,10 @@ else:
 def output(text):
   with open("output.txt", "a") as text_file:
       text_file.write("\n{}".format(text))
+
+def debug(text):
+  with open("page.txt", "a") as text_file:
+      text_file.write("{}\n".format(text))
 
 def parse_isbn(paperback_url):
   paperback_isbn_string = re.search(r'dp/(\d+)/ref', paperback_url)
@@ -57,9 +60,10 @@ class BookSpider(scrapy.Spider):
   success = 0
   fail = 0
   def start_requests(self):
+    volume = int(getattr(self,'volume', 50))
     self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2840.71 Safari/539.36'}
 
-    for book in Operations.QueryUnfetchedBooks():
+    for book in Operations.QueryUnfetchedBooks(volume):
       book_url = book.URL
       if '://' not in book_url:
         book_url = 'https://' + book_url
@@ -92,7 +96,6 @@ class BookSpider(scrapy.Spider):
       return
 
     book['Title'] = book['Title'].replace('\n', '')
-    output("{}: {}".format(response.meta.get('proxy'), book['Title']))
 
     # author
     book['Author'] = response.xpath("//a[@data-asin]/text()").extract_first()
@@ -105,16 +108,34 @@ class BookSpider(scrapy.Spider):
       if language == None:
         language = response.xpath("//span[contains(text(), 'Language:')]").xpath("../text()").extract_first(None)
 
-      output('language: {}'.format(language))
+      if language == None or language.strip() == '':
+        language_list = response.xpath("//span[contains(text(), 'Language:')]").xpath("../span/text()").extract()
+
+        if len(language_list) > 0:
+          language = language_list[-1]
+
+      if language == None:
+        language = ''
+
       book['LanguageID'] = Operations.GetOrCreateLanguage(language.strip()).Id
 
     except Exception as e:
-      output('language: {}'.format(response.url))
+      pass
 
     # kindle categories
     try:
       kindle_category_names = response.xpath("//li[@id='SalesRank']/ul/li/..//a/text()").extract()
       kindle_category_urls = response.xpath("//li[@id='SalesRank']/ul/li/..//a/@href").extract()
+
+      if len(kindle_category_names) == 0:
+        kindle_category_names = response.xpath("//div[@data-feature-name='detailBullets']/ul/li/span").xpath(".//a/text()").extract()[1:]
+        kindle_category_urls = response.xpath("//div[@data-feature-name='detailBullets']/ul/li/span").xpath(".//a/@href").extract()[1:]
+        debug("{} - {} \n\n".format(str(kindle_category_names), response.url))
+
+        if len(kindle_category_names) == 0:
+          with open("category.html", "w") as text_file:
+              text_file.write(response.text)
+
 
       if len(kindle_category_names) > 0:
         book['eBookCategory_1'] = Operations.GetOrCreateEBookCategory(kindle_category_names[0], kindle_category_urls[0]).Id
@@ -162,5 +183,5 @@ class BookSpider(scrapy.Spider):
     return spider
 
   def spider_closed(self, spider):
-    print("Saved: {}".format(self.c))
+    output("{}/{}".format(self.success, self.fail))
     pass

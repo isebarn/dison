@@ -9,8 +9,7 @@ from sqlalchemy.orm import sessionmaker
 import psycopg2
 from time import time
 
-if os.environ.get('DISON_DATABASE') is not None:
-  connectionString = os.environ.get('DISON_DATABASE')
+connectionString = "postgresql://dison:dison123@192.168.1.35:5433/dison"
 
 engine = create_engine(connectionString, echo=False)
 
@@ -250,8 +249,8 @@ class Operations:
     with open('data.csv', 'w') as f_output:
         cursor.copy_expert("""COPY (select * from excel) TO STDOUT WITH (FORMAT CSV)""", f_output)
 
-  def QueryUnfetchedBooks():
-    return session.query(Book).limit(2000).all()
+  def QueryUnfetchedBooks(volume=500):
+    return session.query(Book).limit(volume).all()
 
   def Commit():
     session.commit()
