@@ -2,3 +2,5 @@ venv/
 __pycache__/
 dison.sublime*
 data.csv
+output.txt
+page.txt
