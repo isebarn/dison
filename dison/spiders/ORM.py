@@ -5,6 +5,7 @@ from datetime import datetime
 
 from sqlalchemy import ForeignKey, desc, create_engine, func, Column, BigInteger, Integer, Float, String, Boolean, DateTime, Text
 from sqlalchemy.ext.declarative import declarative_base
+from  sqlalchemy.sql.expression import func, select
 from sqlalchemy.orm import sessionmaker
 import psycopg2
 from time import time
@@ -250,7 +251,7 @@ class Operations:
         cursor.copy_expert("""COPY (select * from excel) TO STDOUT WITH (FORMAT CSV)""", f_output)
 
   def QueryUnfetchedBooks(volume=500):
-    return session.query(Book).filter_by(Title=None).limit(volume).all()
+    return session.query(Book).filter_by(Title=None).order_by(func.random()).limit(volume).all()
 
   def Commit():
     session.commit()
@@ -272,4 +273,4 @@ class Operations:
     private_session.commit()
 
 if __name__ == "__main__":
-  print(session.query(Book).filter_by(Title=None).count())
+  print(Operations.QueryUnfetchedBooks(500))
