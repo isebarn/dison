@@ -33,6 +33,7 @@ join ebookcategory as ebookcategory2 on ebookcategory2.id = book.ebookcategory_2
 join ebookcategory as ebookcategory3 on ebookcategory3.id = book.ebookcategory_3
 join marketplace on marketplace.id = book.marketplace
 join language on language.id = book.language
-join search_url on search_url.id = book.search_url);
+join search_url on search_url.id = book.search_url
+where book.title <> '');
 
-\copy (select * from excel) to '/home/david/data.csv' With CSV HEADER
+#\copy (select * from excel) to '/home/david/data.csv' With CSV HEADER

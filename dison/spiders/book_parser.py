@@ -47,7 +47,7 @@ def parse_isbn(paperback_url):
 
 def handle_block(url_queue, url, proxy_queue, proxy, driver):
   proxy['enabled'] = False
-  url_queue.put(url)
+  # url_queue.put(url)
   proxy_queue.put(proxy)
   driver.close()
 
@@ -56,7 +56,7 @@ def parse_page(proxy_queue, url_queue):
 
   if proxy['enabled'] == False:
     print("Proxy blocked: {}".format(proxy['proxy']))
-    sleep(100)
+    sleep(1)
 
   proxy['enabled'] = True
 
@@ -205,7 +205,7 @@ if __name__ == '__main__':
     for url in urls:
       url_queue.put({"url": url.URL, "id": url.Id})
 
-    ROTATING_PROXY_LIST = ['p.webshare.io:19999','p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003']
+    ROTATING_PROXY_LIST = ['p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003','p.webshare.io:20004']#,'p.webshare.io:20005','p.webshare.io:20006','p.webshare.io:20007','p.webshare.io:20008','p.webshare.io:20009','p.webshare.io:20010','p.webshare.io:20011','p.webshare.io:20012','p.webshare.io:20013','p.webshare.io:20014','p.webshare.io:20015','p.webshare.io:20016','p.webshare.io:20017','p.webshare.io:20018','p.webshare.io:20019']
     proxy_queue = Queue()
     for proxy in ROTATING_PROXY_LIST:
       proxy_queue.put({"proxy": proxy, "enabled": True, "block_time": None})

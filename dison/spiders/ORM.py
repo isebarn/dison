@@ -256,7 +256,10 @@ class Operations:
     session.commit()
 
   def UpdateBook(save):
-    book = session.query(Book).filter_by(Id=save['id']).first()
+    PrivateSession = sessionmaker()
+    PrivateSession.configure(bind=engine)
+    private_session = PrivateSession()
+    book = private_session.query(Book).filter_by(Id=save['id']).first()
     book.Title = save['Title']
     book.Author = save['Author']
     book.LanguageID = save['LanguageID']
@@ -266,7 +269,7 @@ class Operations:
     book.PaperbackURL = save['PaperbackURL']
     book.PaperbackISBN = save['PaperbackISBN']
 
-    session.commit()
+    private_session.commit()
 
 if __name__ == "__main__":
   print(session.query(Book).filter_by(Title=None).count())
