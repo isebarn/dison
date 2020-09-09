@@ -85,6 +85,8 @@ class RootSpider(scrapy.Spider):
       title_urls = response.xpath("//a[@class='a-link-normal a-text-normal']/@href").extract()
       book_urls = [marketplace.Value + x.xpath("../../@href").extract_first() for x in images]
 
+    if len(book_urls) == 0: return
+
     for book_url in book_urls:
       book = Book()
       book.ASIN = re.search(r'dp/(.*?)/ref', book_url).group(1)
