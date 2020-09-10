@@ -23,7 +23,7 @@ class RootSpider(scrapy.Spider):
   subsubcategory = "//div[@id='departments']/ul/li[5]/span/a/span/text()"
   subsubcategory_backup = "//div[@id='departments']/ul/li[5]/span/span/text()"
   subsubsubcategory = "//div[@id='departments']/ul/li[6]/span/span/text()"
-  ROTATING_PROXY_LIST = ['p.webshare.io:19999','p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003']
+  ROTATING_PROXY_LIST = ['p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003', 'p.webshare.io:20004', 'p.webshare.io:20005', 'p.webshare.io:20006', 'p.webshare.io:20007']
 
   def start_requests(self):
     start_urls = Operations.QueryPageSearch()

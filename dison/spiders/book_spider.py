@@ -7,7 +7,7 @@ from pprint import pprint
 import os
 import re
 import logging
-
+import requests
 import urllib3
 import time
 from datetime import datetime, timedelta
@@ -25,7 +25,6 @@ if __name__ == '__main__':
 else:
   from dison.spiders.ORM import Operations, Book
   from dison.spiders.Email import Email
-from scrapy_selenium import SeleniumRequest
 
 def output(text):
   with open("output.txt", "a") as text_file:
@@ -57,10 +56,12 @@ class MyException(Exception):
 class BookSpider(scrapy.Spider):
   name = "book"
   ready = []
-  ROTATING_PROXY_LIST = ['p.webshare.io:20000','p.webshare.io:20001','p.webshare.io:20002','p.webshare.io:20003','p.webshare.io:20004','p.webshare.io:20005','p.webshare.io:20006','p.webshare.io:20007','p.webshare.io:20008','p.webshare.io:20009','p.webshare.io:20010','p.webshare.io:20011','p.webshare.io:20012','p.webshare.io:20013','p.webshare.io:20014','p.webshare.io:20015','p.webshare.io:20016','p.webshare.io:20017','p.webshare.io:20018','p.webshare.io:20019']
+  proxies_url = 'https://proxy.webshare.io/proxy/list/download/rbxxnxiqipaxnhyvlsclanwympqgntoguuuetzmg/-/http/port/domain/'
   success = 0
   fail = 0
   def start_requests(self):
+    self.ROTATING_PROXY_LIST = requests.get(self.proxies_url).text.split('\r\n')
+
     volume = int(getattr(self,'volume', 50))
     self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2840.71 Safari/539.36'}
 
