@@ -83,7 +83,12 @@ class RootSpider(scrapy.Spider):
 
     if len(book_urls) == 0:
       title_urls = response.xpath("//a[@class='a-link-normal a-text-normal']/@href").extract()
-      book_urls = [marketplace.Value + x.xpath("../../@href").extract_first() for x in images]
+      book_urls = []
+      for url in title_urls:
+        if not url.startswith("https://"):
+          url = marketplace.Value + url
+
+        book_urls.append(url)
 
     if len(book_urls) == 0: return
 
