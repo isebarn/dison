@@ -45,6 +45,7 @@ def parse_isbn(paperback_url):
 
 def handle_block(proxy_queue, proxy, driver):
   proxy_queue.put(proxy)
+  driver.delete_all_cookies()
   driver.close()
 
 def parse_page(proxy_queue, url_queue, proxy):
