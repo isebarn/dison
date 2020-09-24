@@ -58,7 +58,7 @@ def parse_page(proxy_queue, url_queue, proxy):
   try:
     driver = webdriver.Remote(os.environ.get("BROWSER"), options=options, desired_capabilities=capabilities)
     driver.set_page_load_timeout(10)
-  
+
   except Exception as e:
     proxy_queue.put(proxy)
     sleep(5)
@@ -143,6 +143,16 @@ def parse_page(proxy_queue, url_queue, proxy):
           categories = driver.find_element_by_id('detailBullets_feature_div').find_elements_by_xpath(".//following-sibling::ul/li/span/span/span/a")
           kindle_category_names = [x.text for x in categories[1:]]
           kindle_category_urls = [x.get_attribute('href') for x in categories[1:]]
+
+          if len(categories) == 0:
+            categories = driver.find_element_by_id('detailBullets_feature_div').find_elements_by_xpath(".//following-sibling::ul/li/span/ul/li/span/a")
+            kindle_category_names = [x.text for x in categories]
+            kindle_category_urls = [x.get_attribute('href') for x in categories]
+
+          if len(categories) == 0:
+            categories = [x for x in driver.find_elements_by_xpath('//a[@href]') if '/bestsellers/' in x.get_attribute('href')]
+            kindle_category_names = [x.text for x in categories[1:]]
+            kindle_category_urls = [x.get_attribute('href') for x in categories[1:]]
 
           if len(kindle_category_names) > 0:
             book['eBookCategory_1'] = Operations.GetOrCreateEBookCategory(kindle_category_names[0], kindle_category_urls[0]).Id
